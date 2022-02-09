@@ -1,8 +1,8 @@
-# Chrome Extension TypeScript Starter
+# Peeky Chrome Extension
 
-![build](https://github.com/chibat/chrome-extension-typescript-starter/workflows/build/badge.svg)
+![build](https://github.com/ErikDombi/Peeky/workflows/chrome-extension-build/badge.svg)
 
-Chrome Extension, TypeScript and Visual Studio Code
+Chrome Extension for Peeky
 
 ## Prerequisites
 
@@ -11,26 +11,6 @@ Chrome Extension, TypeScript and Visual Studio Code
 ## Option
 
 * [Visual Studio Code](https://code.visualstudio.com/)
-
-## Includes the following
-
-* TypeScript
-* Webpack
-* React
-* Jest
-* Example Code
-    * Chrome Storage
-    * Options Version 2
-    * content script
-    * count up badge number
-    * background
-
-## Project Structure
-
-* src/typescript: TypeScript source files
-* src/assets: static files
-* dist: Chrome Extension directory
-* dist/js: Generated JavaScript files
 
 ## Setup
 
