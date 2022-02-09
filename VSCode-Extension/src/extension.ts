@@ -35,7 +35,7 @@ export function activate(context: vscode.ExtensionContext) {
 		console.log(`Peeky server stopped`);
 	}));
 
-	peekyStatusBarItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Right, 100);
+	peekyStatusBarItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Right, 10000);
 	peekyStatusBarItem.text = 'Peeky: Inactive';
 	peekyStatusBarItem.command = startServerCommandId;
 	peekyStatusBarItem.show();
