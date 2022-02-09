@@ -3,33 +3,45 @@
 import * as vscode from 'vscode';
 import {Express} from 'express';
 import { Uri } from 'vscode';
+import { Server } from 'http';
 const express = require("express");
 const app : Express = express();
 const port = 6070;
 
+let peekyStatusBarItem: vscode.StatusBarItem;
+let serverInstance: Server;
+
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
-	
-	// Use the console to output diagnostic information (console.log) and errors (console.error)
-	// This line of code will only be executed once when your extension is activated
-	console.log('Congratulations, your extension "peeky" is now active!');
+	console.log("Peeky loaded!");
+	createHTTPListener();
 
-	// The command has been defined in the package.json file
-	// Now provide the implementation of the command with registerCommand
-	// The commandId parameter must match the command field in package.json
-	let disposable = vscode.commands.registerCommand('peeky.helloWorld', () => {
-		// The code you place here will be executed every time your command is executed
-		// Display a message box to the user
-		vscode.window.showInformationMessage('Hello World from Peeky!');
-	});
+	const startServerCommandId = 'peeky.startListener';
+	const stopServerCommandId = 'peeky.stopListener';
 
-	context.subscriptions.push(disposable);
+    context.subscriptions.push(vscode.commands.registerCommand(startServerCommandId, () => {
+		serverInstance = app.listen(port, () => {
+			console.log(`Peeky server started at http://localhost:${port}`);
+			peekyStatusBarItem.text = 'Peeky: Active';
+			peekyStatusBarItem.command = stopServerCommandId;
+		});
+	}));
 
-	CreateHTTPListener();
+	context.subscriptions.push(vscode.commands.registerCommand(stopServerCommandId, () => {
+		serverInstance?.close();
+		peekyStatusBarItem.text = 'Peeky: Inactive';
+		peekyStatusBarItem.command = startServerCommandId;
+		console.log(`Peeky server stopped`);
+	}));
+
+	peekyStatusBarItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Right, 100);
+	peekyStatusBarItem.text = 'Peeky: Inactive';
+	peekyStatusBarItem.command = startServerCommandId;
+	peekyStatusBarItem.show();
 }
 
-function CreateHTTPListener() {
+function createHTTPListener() {
 	app.get('/open', (req, res) => {
 		const resource : string = req.query.file as string;
 		const uri : Uri = Uri.file(resource);
@@ -40,10 +52,6 @@ function CreateHTTPListener() {
 		});
 
 		res.sendStatus(200);
-	});
-
-	app.listen(port, () => {
-		console.log(`server started at http://localhost:${port}`);
 	});
 }
 

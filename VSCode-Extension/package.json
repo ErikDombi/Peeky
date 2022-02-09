@@ -10,14 +10,18 @@
     "Other"
   ],
   "activationEvents": [
-    "onCommand:peeky.helloWorld"
+    "onStartupFinished"
   ],
   "main": "./out/extension.js",
   "contributes": {
     "commands": [
       {
-        "command": "peeky.helloWorld",
-        "title": "Hello World"
+        "command": "peeky.startListener",
+        "title": "Start Peeky Server"
+      },
+      {
+        "command": "peeky.stopListener",
+        "title": "Stop Peeky Server"
       }
     ]
   },

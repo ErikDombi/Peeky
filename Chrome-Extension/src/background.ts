@@ -5,11 +5,13 @@ function openPartial(info: chrome.contextMenus.OnClickData, tab: chrome.tabs.Tab
   chrome.tabs.sendMessage(tab?.id ?? 0, "getXRayPath", { frameId: info.frameId }, data => {
     let clickedElement: string = data.value;
     let filePath: string = clickedElement.trim().split(' ')[3];
-    console.log("FILE URI: " + filePath);
+
+    if(filePath == undefined)
+      return;
+
     fetch("http://localhost:6070/open?file=" + filePath);
   });
 }
-
 
 chrome.contextMenus.create({
   title: "Show partial in VS Code",
