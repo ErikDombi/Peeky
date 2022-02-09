@@ -2,10 +2,12 @@
   "name": "peeky",
   "displayName": "Peeky",
   "description": "Quick Jump to partials with X-Ray",
-  "version": "0.0.1",
+  "version": "0.1.0",
+  "publisher": "ErikDombi",
   "engines": {
     "vscode": "^1.64.0"
   },
+  "icon": "icon.png",
   "repository": {
     "url": "https://github.com/ErikDombi/Peeky"
   },
