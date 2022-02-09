@@ -1,6 +1,6 @@
 # Peeky Chrome Extension
 
-![build](https://github.com/ErikDombi/Peeky/workflows/chrome-extension-build/badge.svg)
+[![Chrome Extension Build](https://github.com/ErikDombi/Peeky/actions/workflows/chrome-extension-build.yml/badge.svg)](https://github.com/ErikDombi/Peeky/actions/workflows/chrome-extension-build.yml)
 
 Chrome Extension for Peeky
 

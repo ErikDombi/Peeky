@@ -1,6 +1,6 @@
 # Peeky VS Code Extension
 
-![build](https://github.com/ErikDombi/Peeky/workflows/vscode-extension-build/badge.svg)
+[![VSCode Extension Build](https://github.com/ErikDombi/Peeky/actions/workflows/vscode-extension-build.yml/badge.svg)](https://github.com/ErikDombi/Peeky/actions/workflows/vscode-extension-build.yml)
 
 VS Code Extension for Peeky
 
