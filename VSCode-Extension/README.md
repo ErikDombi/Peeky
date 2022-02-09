@@ -17,8 +17,6 @@ npm install
 
 ## Import as Visual Studio Code project
 
-...
-
 ## Build
 
 ```
@@ -27,7 +25,7 @@ npm run build
 
 ## Build in watch mode
 
-### terminal
+### Terminal
 
 ```
 npm run watch
@@ -35,9 +33,9 @@ npm run watch
 
 ### Visual Studio Code
 
-Run extension.
+Run Extension.
 
-hit `F5`
+Press `F5`
 
 ## Test
 `npx jest` or `npm run test`

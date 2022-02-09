@@ -2,7 +2,7 @@
   "name": "peeky-xray",
   "displayName": "Peeky",
   "description": "Quick Jump to partials with X-Ray",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "publisher": "ErikDombi",
   "engines": {
     "vscode": "^1.64.0"

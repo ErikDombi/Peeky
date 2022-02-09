@@ -46,7 +46,6 @@ function createHTTPListener() {
 		const resource : string = req.query.file as string;
 		const uri : Uri = Uri.file(resource);
 
-		vscode.window.showInformationMessage(`Open file '${resource}'`);
 		vscode.workspace.openTextDocument(uri).then((doc: vscode.TextDocument) => {
 			vscode.window.showTextDocument(doc, 1, false);
 		});
