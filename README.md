@@ -3,6 +3,8 @@
 
 VS Code &amp; Chrome Extension to open partial views using XRAY
 
+![Peeky](https://user-images.githubusercontent.com/23159219/153272059-892c4c47-6566-49f4-8214-67f99d7ccf15.png)
+
 ## Installation
 
 Both extensions are required for Peeky to work
