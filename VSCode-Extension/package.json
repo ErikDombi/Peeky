@@ -6,6 +6,9 @@
   "engines": {
     "vscode": "^1.64.0"
   },
+  "repository": {
+    "url": "https://github.com/ErikDombi/Peeky"
+  },
   "categories": [
     "Other"
   ],
