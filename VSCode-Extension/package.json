@@ -1,5 +1,5 @@
 {
-  "name": "peeky",
+  "name": "peeky-xray",
   "displayName": "Peeky",
   "description": "Quick Jump to partials with X-Ray",
   "version": "0.1.0",
@@ -21,11 +21,11 @@
   "contributes": {
     "commands": [
       {
-        "command": "peeky.startListener",
+        "command": "peeky-xray.startListener",
         "title": "Start Peeky Server"
       },
       {
-        "command": "peeky.stopListener",
+        "command": "peeky-xray.stopListener",
         "title": "Stop Peeky Server"
       }
     ]

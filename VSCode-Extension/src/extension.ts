@@ -17,8 +17,8 @@ export function activate(context: vscode.ExtensionContext) {
 	console.log("Peeky loaded!");
 	createHTTPListener();
 
-	const startServerCommandId = 'peeky.startListener';
-	const stopServerCommandId = 'peeky.stopListener';
+	const startServerCommandId = 'peeky-xray.startListener';
+	const stopServerCommandId = 'peeky-xray.stopListener';
 
     context.subscriptions.push(vscode.commands.registerCommand(startServerCommandId, () => {
 		serverInstance = app.listen(port, () => {
