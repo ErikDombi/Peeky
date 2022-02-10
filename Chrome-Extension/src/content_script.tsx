@@ -60,12 +60,12 @@ function ErrorPopup(msg: string) {
   let elem = document.createElement('div');
   document.body.appendChild(elem);
   elem.innerHTML = ReactDOMServer.renderToString(
-    <div style={{background: '#3A3335', display: 'inline-block', position: 'fixed', right: '25px', bottom: '25px', color: 'white', borderRadius: '6px', overflow: 'hidden', fontFamily: 'Roboto', minWidth: '350px', transition: `opacity ${popupFadeoutString}`}}>
+    <div style={{background: '#3A3335', display: 'inline-block', position: 'fixed', right: '25px', bottom: '25px', color: 'white', borderRadius: '6px', overflow: 'hidden', fontFamily: 'Roboto', minWidth: '350px', transition: `opacity ${popupFadeoutString}`, zIndex: 9999999}}>
       <div style={{padding: '4px 8px', background: '#D81E5B', fontWeight: 400, fontSize: '16pt', letterSpacing: '1px', boxShadow: '0 3px 8px rgba(0,0,0,0.3)'}}>
         <span>Peeky</span>
       </div>
       <div style={{padding: '8px'}}>
-        <span>{msg}</span>
+        <pre style={{padding: 'unset', fontSize: 'unset', lineHeight: 'unset', color: 'unset', background: 'inherit', backgroundColor: 'unset', borderRadius: 'unset', margin: 'unset', border: 'unset', outline: 'unset'}}>{msg}</pre>
       </div>
     </div>
   );
