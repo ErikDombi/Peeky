@@ -46,14 +46,43 @@ export function activate(context: vscode.ExtensionContext) {
 }
 
 function createHTTPListener() {
+	app.use(express.json());
+
 	app.get('/open', (req, res) => {
 		const resource : string = req.query.file as string;
 		const uri : Uri = Uri.file(resource);
 
 		vscode.workspace.openTextDocument(uri).then((doc: vscode.TextDocument) => {
-			vscode.window.showTextDocument(doc, 1, false);
+			vscode.window.showTextDocument(doc, 1, false).then((e) => {
+				let tags = JSON.parse(req.query.tags as string);
+				let lineCandidate : vscode.TextLine | null = null;
+				let highestScore : number = 0;
+				for(let i = 0; i < e.document.lineCount; i++) {
+					let line: string = e.document.lineAt(i).text;
+					let score : number = 0;
+					for(let tag of tags) {
+						if(line.includes(tag)) {
+							score++;
+						}
+					}
+					if(score > highestScore) {
+						lineCandidate = e.document.lineAt(i);
+					}
+				}
+				if(lineCandidate != null){
+					e.revealRange(lineCandidate.range, vscode.TextEditorRevealType.InCenter);
+					let styleForRegExp = Object.assign({}, { border: "1px solid yellow" },
+					{
+						overviewRulerLane: vscode.OverviewRulerLane.Right
+					});
+					e.setDecorations(
+						vscode.window.createTextEditorDecorationType(styleForRegExp),
+						new Array<vscode.Range>(lineCandidate.range)
+					);
+				}
+			});
 		});
-
+		
 		res.sendStatus(200);
 	});
 

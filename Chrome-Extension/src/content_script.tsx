@@ -34,7 +34,16 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
       return;
     }
 
-    sendResponse({ value: XRayNode?.textContent });
+    let tags : Array<string> = new Array<string>();
+    
+    tags.push(clickedElement?.nodeName as string);
+    let attributes = (clickedElement as HTMLElement).attributes;
+    let attributesArray = Array.prototype.slice.call(attributes);
+    for(let attribute of attributesArray) {
+      tags.push(attribute.value);
+    }
+
+    sendResponse({ value: {el: XRayNode?.textContent, tags: tags} });
   }
 
   if(request.msg == "displayError") {
