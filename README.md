@@ -14,13 +14,16 @@ Both extensions are required for Peeky to work
 ## Usage
 
 To start Peeky, look for the 'Peeky: Inactive' button in Visual Studio's status bar.
-![Image]()
 Clicking this button will start Peeky's listener.
 * Note: Starting Peeky will stop Peeky in any other Visual Studio Code instance running.
+
+![4x6jxtNUAe](https://user-images.githubusercontent.com/23159219/153323713-797ad19c-d22d-47a8-b18e-53390538710c.png)
 
 Once you see 'Peeky: Active' in your status bar, you are ready to start using the chrome extension.
 Simply click on any element and select "Show partial in VS Code", VS Code will then open the file containing the selected element.
 * Note: Peeky will only work on sites using the xray-rails gem.
+
+![s1PEMvHMbK](https://user-images.githubusercontent.com/23159219/153323901-77265848-36db-4084-a459-c18740e419d5.png)
 
 ## Building
 
