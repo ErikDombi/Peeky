@@ -62,11 +62,12 @@ function createHTTPListener() {
 					let score : number = 0;
 					for(let tag of tags) {
 						if(line.toLowerCase().includes(tag.toLowerCase())) {
-							score++;
+							score += tag.length;
 						}
 					}
 					if(score > highestScore) {
 						lineCandidate = e.document.lineAt(i);
+						highestScore = score;
 					}
 				}
 				console.log(tags);
