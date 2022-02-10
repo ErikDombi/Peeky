@@ -37,7 +37,9 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
     let tags : Array<string> = new Array<string>();
 
     tags.push(clickedElement?.nodeName as string);
-    tags.push(clickedElement?.textContent?.replace("\n", "").trim() as string);
+    let children : Array<Node> = Array.from(clickedElement?.childNodes as any);
+    let textNodes = children.filter(t => t.nodeType == 3);
+    tags.push(textNodes.map(t => t.textContent).join(''));
     let attributes = (clickedElement as HTMLElement).attributes;
     let attributesArray = Array.prototype.slice.call(attributes);
     for(let attribute of attributesArray) {

@@ -61,8 +61,10 @@ function createHTTPListener() {
 					let line: string = e.document.lineAt(i).text;
 					let score : number = 0;
 					for(let tag of tags) {
-						if(line.toLowerCase().includes(tag.toLowerCase())) {
-							score += tag.length;
+						for(let word of tag.split(' ')) {
+							if(line.toLowerCase().includes(word.toLowerCase())) {
+								score += word.length;
+							}
 						}
 					}
 					if(score > highestScore) {
@@ -81,7 +83,7 @@ function createHTTPListener() {
 					});
 					e.setDecorations(
 						vscode.window.createTextEditorDecorationType(styleForRegExp),
-						new Array<vscode.Range>(lineCandidate.range)
+						new Array<vscode.Range>(new vscode.Range(new vscode.Position(lineCandidate.range.start.line, 0), new vscode.Position(lineCandidate.range.start.line, 0)))
 					);
 				}
 			});
