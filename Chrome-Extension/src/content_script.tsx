@@ -1,3 +1,6 @@
+import ReactDOMServer from 'react-dom/server'
+import React from 'react';
+
 let clickedElement: Node | null = null;
 
 document.addEventListener("contextmenu", (e: MouseEvent) => {
@@ -27,7 +30,7 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
     }
 
     if(XRayNode == null) {
-      ErrorPopupHTML("<b>Peeky:</b> Could not find an XRAY comment node");
+      ErrorPopup("Could not find an XRAY comment node");
       return;
     }
 
@@ -45,7 +48,7 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
     if(request.data == null)
       return;
 
-    ErrorPopupHTML(request.data as string);
+    ErrorPopup(request.data as string);
   }
 });
 
@@ -53,22 +56,21 @@ const popupTimeout: number = 5000; // How long to show the popup in miliseconds
 const popupFadeout: number = 300; // How long to hide the popup in miliseconds
 const popupFadeoutString: string = `${popupFadeout / 1000}s`; // Do not modify
 
-function ErrorPopup(text: string) {
-  let elem: HTMLDivElement = document.createElement('div');
-  elem.textContent = text;
-  elem.setAttribute('style', `font-size: 1.8rem; background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; position: fixed; padding: 1.25rem 1.75rem; right: 1rem; bottom: 1rem; border-radius: 0.25rem; box-sizing: border-box; display: block; transition: opacity ${popupFadeoutString};`);
-  elem.addEventListener('click', () => {elem.remove()});
+function ErrorPopup(msg: string) {
+  let elem = document.createElement('div');
   document.body.appendChild(elem);
-  setTimeout(() => { elem.style.setProperty('opacity', '0') }, popupTimeout); // Hide the popup
-  setTimeout(() => { elem.remove() }, popupTimeout + popupFadeout + 100); // Delete the element once hidden
-}
-
-function ErrorPopupHTML(html: string) {
-  let elem: HTMLDivElement = document.createElement('div');
-  elem.innerHTML = html;
-  elem.setAttribute('style', `font-size: 1.8rem; background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; position: fixed; padding: 0.75rem 1.25rem; right: 1rem; bottom: 1rem; border-radius: 0.25rem; box-sizing: border-box; display: block; transition: opacity ${popupFadeoutString};`);
+  elem.innerHTML = ReactDOMServer.renderToString(
+    <div style={{background: '#3A3335', display: 'inline-block', position: 'fixed', right: '25px', bottom: '25px', color: 'white', borderRadius: '6px', overflow: 'hidden', fontFamily: 'Roboto', minWidth: '350px', transition: `opacity ${popupFadeoutString}`}}>
+      <div style={{padding: '4px 8px', background: '#D81E5B', fontWeight: 400, fontSize: '16pt', letterSpacing: '1px', boxShadow: '0 3px 8px rgba(0,0,0,0.3)'}}>
+        <span>Peeky</span>
+      </div>
+      <div style={{padding: '8px'}}>
+        <span>{msg}</span>
+      </div>
+    </div>
+  );
   elem.addEventListener('click', () => {elem.remove()});
-  document.body.appendChild(elem);
-  setTimeout(() => { elem.style.setProperty('opacity', '0') }, popupTimeout); // Hide the popup
+  let child:HTMLElement = elem.children[0] as HTMLElement;
+  setTimeout(() => { child.style.setProperty('opacity', '0') }, popupTimeout); // Hide the popup
   setTimeout(() => { elem.remove() }, popupTimeout + popupFadeout + 100); // Delete the element once hidden
 }

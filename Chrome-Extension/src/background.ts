@@ -11,7 +11,7 @@ function openPartial(info: chrome.contextMenus.OnClickData, tab: chrome.tabs.Tab
 
     fetch("http://localhost:6070/open?file=" + filePath)
       .catch(e => {
-        chrome.tabs.sendMessage(tab?.id ?? 0, {msg: "displayErrorHTML", data: '<b>Peeky:</b> Failed to connect to VS Code!<br><br>Ensure that Peeky has been activated'}, {frameId: info.frameId}, () => {});
+        chrome.tabs.sendMessage(tab?.id ?? 0, {msg: "displayErrorHTML", data: 'Failed to connect to VS Code!<br><br>Ensure that Peeky has been activated'}, {frameId: info.frameId}, () => {});
       });
   });
 }
