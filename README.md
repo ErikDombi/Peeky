@@ -1,9 +1,8 @@
 # Peeky
+![PeekyBanner](https://user-images.githubusercontent.com/23159219/153456801-6d09b526-ddec-4e73-b6ca-5b15a98ca8b6.png)
 [![Chrome Extension Build](https://github.com/ErikDombi/Peeky/actions/workflows/chrome-extension-build.yml/badge.svg)](https://github.com/ErikDombi/Peeky/actions/workflows/chrome-extension-build.yml) [![VSCode Extension Build](https://github.com/ErikDombi/Peeky/actions/workflows/vscode-extension-build.yml/badge.svg)](https://github.com/ErikDombi/Peeky/actions/workflows/vscode-extension-build.yml)
 
-VS Code &amp; Chrome Extension to open partial views using XRAY
-
-![Peeky](https://user-images.githubusercontent.com/23159219/153272059-892c4c47-6566-49f4-8214-67f99d7ccf15.png)
+Visual Studio Code &amp; Chrome Extension to open partial views using the xray-rails gem
 
 ## Installation
 
