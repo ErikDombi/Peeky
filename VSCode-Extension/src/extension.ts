@@ -21,7 +21,7 @@ export function activate(context: vscode.ExtensionContext) {
 	console.log("Peeky loaded!");
 	createHTTPListener();
 
-	
+
     context.subscriptions.push(vscode.commands.registerCommand(startServerCommandId, () => {
 		axios.get(`http://localhost:${port}/close`).finally(() => {
 			serverInstance = app.listen(port, () => {
@@ -61,7 +61,7 @@ function createHTTPListener() {
 					let line: string = e.document.lineAt(i).text;
 					let score : number = 0;
 					for(let tag of tags) {
-						if(line.includes(tag)) {
+						if(line.toLowerCase().includes(tag.toLowerCase())) {
 							score++;
 						}
 					}
@@ -69,7 +69,10 @@ function createHTTPListener() {
 						lineCandidate = e.document.lineAt(i);
 					}
 				}
-				if(lineCandidate != null){
+				console.log(tags);
+				console.log("lineCandidate");
+				console.log(lineCandidate);
+				if(lineCandidate !== null){
 					e.revealRange(lineCandidate.range, vscode.TextEditorRevealType.InCenter);
 					let styleForRegExp = Object.assign({}, { border: "1px solid yellow" },
 					{
@@ -82,7 +85,7 @@ function createHTTPListener() {
 				}
 			});
 		});
-		
+
 		res.sendStatus(200);
 	});
 
