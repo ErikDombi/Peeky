@@ -1,6 +1,8 @@
 import { IPC, IPCMessage } from "../ipc";
 import ReactDOMServer from 'react-dom/server'
 import React from 'react';
+import {StyleSelector} from './Components/StyleSelector/StyleSelector'
+import Highlight from 'highlight.js'
 
 class DOMInterfacer {
   private IPCListener = new IPC();
@@ -12,13 +14,15 @@ class DOMInterfacer {
     this.IPCListener.subscribeMessage('display-error', (event: IPCMessage) => {
       this.ErrorPopup(event.Data);
     });
+
+    this.SelectCSSRulePopup(document.body);
   }
 
   ErrorPopup(msg: string): void {
     let elem = document.createElement('div');
     document.body.appendChild(elem);
     elem.innerHTML = ReactDOMServer.renderToString(
-      <div style={{background: '#3A3335', display: 'inline-block', position: 'fixed', right: '25px', bottom: '25px', color: 'white', borderRadius: '6px', overflow: 'hidden', fontFamily: 'Roboto', minWidth: '350px', transition: `opacity ${popupFadeoutString}`, zIndex: 9999999}}>
+      <div style={{background: '#3A3335', display: 'inline-block', position: 'fixed', right: '25px', bottom: '25px', color: 'white', borderRadius: '6px', overflow: 'hidden', fontFamily: 'Roboto', minWidth: '350px', transition: `opacity ${this.popupFadeoutString}`, zIndex: 9999999}}>
         <div style={{padding: '4px 8px', background: '#D81E5B', fontWeight: 400, fontSize: '16pt', letterSpacing: '1px', boxShadow: '0 3px 8px rgba(0,0,0,0.3)'}}>
           <span>Peeky</span>
         </div>
@@ -34,7 +38,12 @@ class DOMInterfacer {
   }
 
   SelectCSSRulePopup(element: HTMLElement): void {
-
+    let elem = document.createElement('div');
+    document.body.appendChild(elem);
+    elem.innerHTML = ReactDOMServer.renderToString(
+      <StyleSelector Rules={this.GetElementCSS(document.body)}/>
+    )
+    Highlight.highlightAll();
   }
 
   private GetElementCSS(element: HTMLElement): string[] {
@@ -47,7 +56,9 @@ class DOMInterfacer {
                     ret.push(rules[r].cssText);
                 }
             }
-        } catch {}
+        } catch (e) {
+          console.error(e);
+        }
     }
     return ret;
   }

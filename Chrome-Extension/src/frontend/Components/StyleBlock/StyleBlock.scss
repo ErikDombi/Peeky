@@ -1,0 +1,65 @@
+@use '../Colors' as Colors;
+
+.code-block {
+    .code-block-header {
+        border-radius: 6px 6px 0 0;
+        background: Colors.$primary-color;
+        position: relative; 
+        height: 43px;
+        overflow: hidden;
+
+        & > span {
+            font-size: 1.5rem;
+            font-weight: bold;
+            position: relative;
+            left: 10px;
+            top: 8px;
+            color: white;
+        }
+
+        .code-block-close-btn {
+            position: absolute;
+            top: 6px;
+            background: rgba(0,0,0,0.25);
+            padding: 0 11px 3px 10px;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 1.6rem;
+            right: 116px;
+            cursor: default;
+        }
+    
+        .code-block-open-btn {
+            position: absolute;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            width: 110px;
+            background: #41433B;
+            text-align: center;
+            padding-top: 10px;
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: white;
+            cursor: default;
+        }
+
+        & > div {
+            display: inline-block;
+        }
+    }
+
+    .code-block-body {
+        border-bottom: 6px solid Colors.$primary-color;
+        background: Colors.$code-background-color !important;
+
+        pre {
+            margin: 0;
+            background: Colors.$code-background-color !important;
+
+            code {
+                background: Colors.$code-background-color !important;
+            }
+        }
+    }
+}
