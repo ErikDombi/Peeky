@@ -4,7 +4,7 @@
     .code-block-header {
         border-radius: 6px 6px 0 0;
         background: Colors.$primary-color;
-        position: relative; 
+        position: relative;
         height: 43px;
         overflow: hidden;
 
@@ -28,7 +28,7 @@
             right: 116px;
             cursor: default;
         }
-    
+
         .code-block-open-btn {
             position: absolute;
             right: 0;
@@ -55,6 +55,15 @@
 
         pre {
             margin: 0;
+            padding: 0;
+            display: unset;
+            font-size: unset;
+            line-height: unset;
+            color: unset;
+            border-radius: unset;
+            word-break: unset;
+            word-wrap: unset;
+            border: none;
             background: Colors.$code-background-color !important;
 
             code {

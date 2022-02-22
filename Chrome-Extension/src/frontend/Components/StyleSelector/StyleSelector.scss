@@ -16,11 +16,11 @@
         border-radius: 12px;
         overflow: hidden;
         position: relative;
-        height: 50vh;
-        margin-top: 25vh;
+        height: 80vh;
+        margin-top: 10vh;
         min-width: 300px;
-        width: 30vw;
-        margin-left: 60vw;
+        width: 40vw;
+        margin-left: 50vw;
 
         .selector-header {
             background: Colors.$primary-color;
@@ -33,7 +33,7 @@
             padding: 22px 20px;
             overflow-y: scroll;
             height: 85.5%;
-            
+
             .code-block:not(code-block:last-of-type) {
                 margin-bottom: 20px;
             }
