@@ -22,9 +22,9 @@
         margin-top: 50vh;
         margin-left: 50vw;
         height: min-content;
-        max-height: 80vh;
-        min-width: 300px;
-        width: 40vw;
+        max-height: 90vh;
+        min-width: 50vw;
+        max-width: 80vw;
 
         .selector-header {
             background: Colors.$primary-color;
@@ -52,6 +52,7 @@
                 border: 2px solid rgba(0, 0, 0, 0.2);
                 top: 14px;
                 letter-spacing: 1px;
+                color: white;
             }
         }
 
