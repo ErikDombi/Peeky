@@ -29,12 +29,15 @@ class StyleSelector extends Component<StyleSelectorState, StyleSelectorState> {
             <div className='code-block-modal'>
                 <div className='selector-header'>
                     <h1>Style Rules</h1>
+                    <div className='selector-close'>Close</div>
                 </div>
                 <div className='rules'>
-                    {forLoop(this.Rules.length, (idx) => {
-                        let rule = this.Rules[idx];
-                        return <StyleBlock key={`element${idx + 1}`} Title={`Element Rule #${idx}`} Content={rule}/>
-                    })}
+                    <div>
+                        {forLoop(this.Rules.length, (idx) => {
+                            let rule = this.Rules[idx];
+                            return <StyleBlock key={`element${idx + 1}`} Title={`Element Rule #${idx + 1}`} Content={rule}/>
+                        })}
+                    </div>
                 </div>
             </div>
         </div>

@@ -15,7 +15,7 @@ class DOMInterfacer {
       this.ErrorPopup(event.Data);
     });
 
-    this.SelectCSSRulePopup(document.body);
+    //this.SelectCSSRulePopup(document.body);
   }
 
   ErrorPopup(msg: string): void {
@@ -39,11 +39,32 @@ class DOMInterfacer {
 
   SelectCSSRulePopup(element: HTMLElement): void {
     let elem = document.createElement('div');
+    elem.id = 'peeky-ss-container';
     document.body.appendChild(elem);
     elem.innerHTML = ReactDOMServer.renderToString(
-      <StyleSelector Rules={this.GetElementCSS(document.body)}/>
+      <StyleSelector Rules={this.GetElementCSS(element)}/>
     )
     Highlight.highlightAll();
+    document.querySelectorAll('.code-block-close-btn').forEach(CloseButton => {
+      let id = CloseButton.getAttribute('id');
+      let body = document.querySelector(`.cb-body-${id}`) as HTMLElement;
+      let initHeight = window.getComputedStyle(body).height;
+      body.style.setProperty('max-height', initHeight);
+
+      CloseButton.addEventListener('click', () => {
+        let isClosed: boolean = window.getComputedStyle(body).height === '0px';
+        body.style.setProperty('max-height', isClosed ? initHeight : '0vh');
+        CloseButton.textContent = isClosed ? '-' : '+';
+      })
+    })
+    
+    document.querySelector('.code-block-container-bg')?.addEventListener('click', () => {
+      document.querySelector('#peeky-ss-container')?.remove();
+    });
+
+    document.querySelector('.selector-close')?.addEventListener('click', () => {
+      document.querySelector('#peeky-ss-container')?.remove();
+    });
   }
 
   private GetElementCSS(element: HTMLElement): string[] {

@@ -44,6 +44,11 @@ IPCListener.subscribeMessage('get-xray-path', (event: IPCMessage) => {
   return { value: {el: XRayNode?.textContent, tags: tags} };
 });
 
+IPCListener.subscribeMessage('select-element-css', (event: IPCMessage) => {
+  DOMInterface.SelectCSSRulePopup(clickedElement as HTMLElement);
+  return true;
+})
+
 IPCListener.startListener();
 
 let clickedElement: Node | null = null;

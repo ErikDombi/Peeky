@@ -8,7 +8,7 @@
       "type": "pwa-chrome",
       "request": "launch",
       "name": "Launch Chrome",
-      "url": "https://www.infotech.com/",
+      "url": "https://google.com/",
       "preLaunchTask": "npm: watch",
       "runtimeArgs": ["--load-extension=${workspaceFolder}/dist/"],
       "webRoot": "${workspaceFolder}/dist",

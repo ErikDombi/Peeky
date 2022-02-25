@@ -13,28 +13,57 @@
 
     .code-block-modal {
         background: white;
+        display: flex;
+        flex-direction: column;
         border-radius: 12px;
         overflow: hidden;
         position: relative;
-        height: 80vh;
-        margin-top: 10vh;
+        transform: translate(-50%, -50%);
+        margin-top: 50vh;
+        margin-left: 50vw;
+        height: min-content;
+        max-height: 80vh;
         min-width: 300px;
         width: 40vw;
-        margin-left: 50vw;
 
         .selector-header {
             background: Colors.$primary-color;
             margin: 0;
             color: white;
             padding: 10px;
+            position: relative;
+            height: 50px;
+
+            h1 {
+                padding: 7px;
+                font-size: 28.8px;
+            }
+
+            .selector-close {
+                position: absolute;
+                top: 6px;
+                background: rgba(0,0,0,0.25);
+                padding: 8px 25px;
+                border-radius: 5px;
+                font-weight: bold;
+                font-size: 19.2px;
+                right: 20px;
+                cursor: default;
+                border: 2px solid rgba(0, 0, 0, 0.2);
+                top: 14px;
+                letter-spacing: 1px;
+            }
         }
 
         .rules {
             padding: 22px 20px;
-            overflow-y: scroll;
-            height: 85.5%;
+            overflow-y: auto;
 
-            .code-block:not(code-block:last-of-type) {
+            & > div {
+                height: min-content;
+            }
+
+            .code-block:not(.code-block:last-of-type) {
                 margin-bottom: 20px;
             }
         }

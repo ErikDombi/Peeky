@@ -29,18 +29,17 @@ async function ShowElement(tab: number) {
 }
 
 async function ShowStyle(tab: number) {
-  let result = await IPCListener.sendMessage<any>(new IPCMessage('get-element-style'), tab);
-
+  let result = await IPCListener.sendMessage<any>(new IPCMessage('select-element-css'), tab);
 }
 
 chrome.contextMenus.create({
-  title: "Peeky: Show Element",
+  title: "Show Element",
   contexts: ["page", "selection", "image", "video", "audio", "link", "frame"],
   id: 'showElement'
 });
 
 chrome.contextMenus.create({
-  title: "Peeky: Show Style",
+  title: "Show Style",
   contexts: ["page", "selection", "image", "video", "audio", "link", "frame"],
   id: 'showStyle'
 });

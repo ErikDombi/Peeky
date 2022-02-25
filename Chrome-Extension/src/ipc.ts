@@ -13,7 +13,7 @@ class IPC {
   startListener() : void {
     chrome.runtime.onMessage.addListener((message : IPCMessage, sender, sendResponse : Function) => {
       console.log(message);
-      if(message.Name == undefined || message.Data == undefined)
+      if(message.Name == undefined)
         return false;
 
       let result = this.Subscriptions.find(t => t.Name == message.Name)?.Method(message);
