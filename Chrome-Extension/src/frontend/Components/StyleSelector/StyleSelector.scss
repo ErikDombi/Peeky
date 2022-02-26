@@ -10,6 +10,15 @@
     margin: 0;
     padding: 0;
     z-index: 9999999;
+    line-height: normal;
+    
+    * {
+        font-family: arial,sans-serif;
+    }
+
+    h1 {
+        font-weight: bold;
+    }
 
     .code-block-modal {
         background: white;
@@ -32,7 +41,6 @@
             color: white;
             padding: 10px;
             position: relative;
-            height: 50px;
 
             h1 {
                 padding: 7px;
@@ -41,7 +49,7 @@
 
             .selector-close {
                 position: absolute;
-                top: 6px;
+                top: 10px;
                 background: rgba(0,0,0,0.25);
                 padding: 8px 25px;
                 border-radius: 5px;
@@ -50,7 +58,6 @@
                 right: 20px;
                 cursor: default;
                 border: 2px solid rgba(0, 0, 0, 0.2);
-                top: 14px;
                 letter-spacing: 1px;
                 color: white;
             }

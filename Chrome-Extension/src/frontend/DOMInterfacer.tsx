@@ -53,17 +53,21 @@ class DOMInterfacer {
 
       CloseButton.addEventListener('click', () => {
         let isClosed: boolean = window.getComputedStyle(body).height === '0px';
-        body.style.setProperty('max-height', isClosed ? initHeight : '0vh');
+        body.style.setProperty('max-height', isClosed ? initHeight : '0px');
         CloseButton.textContent = isClosed ? '-' : '+';
       })
     })
     
+    document.body.style.setProperty('overflow', 'hidden');
+
     document.querySelector('.code-block-container-bg')?.addEventListener('click', () => {
       document.querySelector('#peeky-ss-container')?.remove();
+      document.body.style.setProperty('overflow', 'unset');
     });
 
     document.querySelector('.selector-close')?.addEventListener('click', () => {
       document.querySelector('#peeky-ss-container')?.remove();
+      document.body.style.setProperty('overflow', 'unset');
     });
   }
 
