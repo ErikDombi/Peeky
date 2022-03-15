@@ -15,7 +15,7 @@ IPCListener.subscribeMessage('style-selected', async (event: IPCMessage) => {
   let ruleLine: number = parseInt(ruleLocation.split(', ')[0].split(' ').reverse()[0]);
   let ruleFile: string = ruleLocation.split(', ').reverse()[0]
 
-  fetch(`http://localhost:6070/open?file=${ruleFile}&tags=[]`)
+  fetch(`http://localhost:6070/open?file=${ruleFile}&line=${ruleLine}`)
     .catch(e => IPCListener.sendMessage(new IPCMessage('display-error', 'Failed to connect to VS Code!\nEnsure that Peeky has been activated!')));
 });
 
