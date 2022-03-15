@@ -69,16 +69,22 @@ class DOMInterfacer {
       document.querySelector('#peeky-ss-container')?.remove();
       document.body.style.setProperty('overflow', 'unset');
     });
+
+    document.querySelectorAll('.code-block-open-btn').forEach(openButton => {
+      openButton.addEventListener('click', e => {
+        this.IPCListener.sendMessage('style-selected', {content: openButton.getAttribute('data-bind-content'), url: openButton.getAttribute('data-bind-url')});
+      });
+    });
   }
 
-  private GetElementCSS(element: HTMLElement): string[] {
+  private GetElementCSS(element: HTMLElement): any[] {
     let sheets = document.styleSheets, ret = [];
     for (let i in sheets) {
         try {
           let rules = sheets[i].rules || sheets[i].cssRules;
             for (let r in rules) {
                 if (element.matches((rules[r] as any).selectorText)) {
-                    ret.push(rules[r].cssText);
+                    ret.push({url: sheets[i].href, rule: rules[r].cssText});
                 }
             }
         } catch (e) {

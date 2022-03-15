@@ -8,7 +8,7 @@
       "type": "pwa-chrome",
       "request": "launch",
       "name": "Launch Chrome",
-      "url": "https://google.com/",
+      "url": "http://192.168.1.32:3000/",
       "preLaunchTask": "npm: watch",
       "runtimeArgs": ["--load-extension=${workspaceFolder}/dist/"],
       "webRoot": "${workspaceFolder}/dist",

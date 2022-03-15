@@ -5,20 +5,16 @@ import './StyleSelector.scss'
 import {forLoop} from '../../ReactLoop';
 
 type StyleSelectorState = {
-    Rules: string[];
+    Rules: any[];
 }
 
 class StyleSelector extends Component<StyleSelectorState, StyleSelectorState> {
-    Rules: string[];
+    Rules: any[];
 
     constructor(props: StyleSelectorState) {
         super(props);
 
         this.Rules = props.Rules;
-    }
-
-    generateBlock(index: number) : JSX.Element {
-        return <StyleBlock Title="" Content="" />
     }
 
     override render() : JSX.Element {
@@ -35,7 +31,7 @@ class StyleSelector extends Component<StyleSelectorState, StyleSelectorState> {
                     <div>
                         {forLoop(this.Rules.length, (idx) => {
                             let rule = this.Rules[idx];
-                            return <StyleBlock key={`element${idx + 1}`} Title={`Element Rule #${idx + 1}`} Content={rule}/>
+                            return <StyleBlock key={`element${idx + 1}`} Url={rule.url} Title={`Element Rule #${idx + 1}`} Content={rule.rule}/>
                         })}
                     </div>
                 </div>

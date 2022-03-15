@@ -3,11 +3,10 @@ import { delay } from './Threading';
 class IPC {
   private Subscriptions: IPCSubscription[] = [];
   private TabID : Nullable<number> = null;
+  private isBackground: boolean;
 
-  constructor() {
-    chrome.tabs?.query({currentWindow: true, active: true}, (tabs) => {
-      this.TabID = tabs[0].id!;
-    })
+  constructor(isBackground: boolean = false) {
+    this.isBackground = isBackground;
   }
 
   startListener() : void {
@@ -26,10 +25,36 @@ class IPC {
     this.Subscriptions.push(new IPCSubscription(msg, method));
   }
 
-  async sendMessage<ReturnType>(message: IPCMessage, tab: number) : Promise<ReturnType> {
+  private async sendMessageToTab<ReturnType>(message: IPCMessage | string, data?: any) : Promise<ReturnType> {
+    if(typeof message == 'string')
+      message = new IPCMessage(message as string, data);
+
     let responseMessage: Nullable<ReturnType> = null;
 
-    chrome.tabs.sendMessage(tab, message, {}, (res) => {
+    chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
+      chrome.tabs.sendMessage(tabs[0].id!, message, (res) => {
+        responseMessage = res;
+      });
+    })
+
+    let count: number = 0;
+    while(responseMessage == null && count++ < 50) {
+      await delay(100);
+    }
+
+    return responseMessage! as ReturnType;
+  }
+
+  async sendMessage<ReturnType>(message: IPCMessage | string, data?: any) : Promise<ReturnType> {
+    if(this.isBackground)
+      return await this.sendMessageToTab<ReturnType>(message, data);
+
+    if(typeof message == 'string')
+      message = new IPCMessage(message as string, data);
+
+    let responseMessage: Nullable<ReturnType> = null;
+
+    chrome.runtime.sendMessage(message, (res) => {
       responseMessage = res;
     });
 

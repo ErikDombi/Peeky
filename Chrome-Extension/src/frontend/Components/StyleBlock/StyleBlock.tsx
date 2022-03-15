@@ -6,12 +6,14 @@ import Beautify from 'js-beautify';
 
 type StyleBlockState = {
     Title: string;
-    Content: string;  
+    Content: string;
+    Url: string;
 }
 
 class StyleBlock extends Component<StyleBlockState, StyleBlockState> {
     Title: string;
     Content: string;
+    Url: string;
     Id: string;
 
     constructor(props: StyleBlockState) {
@@ -19,6 +21,7 @@ class StyleBlock extends Component<StyleBlockState, StyleBlockState> {
 
         this.Title = props.Title;
         this.Content = props.Content;
+        this.Url = props.Url;
         this.Id = this.Title.replace(/\#/gi, '').replace(/\ /gi, '-');
     }
 
@@ -33,7 +36,7 @@ class StyleBlock extends Component<StyleBlockState, StyleBlockState> {
             <div className='code-block-header'>
                 <span>{this.Title}</span>
                 <div id={this.Id} className='code-block-close-btn'>-</div>
-                <div className='code-block-open-btn'>
+                <div className='code-block-open-btn' data-bind-url={this.Url} data-bind-content={this.Content}>
                     <span>Open</span>
                 </div>
             </div>
