@@ -54,6 +54,21 @@ function createHTTPListener() {
 
     vscode.workspace.openTextDocument(uri).then((doc: vscode.TextDocument) => {
       vscode.window.showTextDocument(doc, 1, false).then((e) => {
+        if(req.query.line != undefined) {
+          let lineNum: number = parseInt(req.query.line as string);
+          let _range = new vscode.Range(lineNum, 0, lineNum, 0)
+          e.revealRange(_range, vscode.TextEditorRevealType.InCenter);
+          let styleForRegExp = Object.assign({}, { border: "1px solid yellow" },
+            {
+              overviewRulerLane: vscode.OverviewRulerLane.Right
+            });
+          e.setDecorations(
+            vscode.window.createTextEditorDecorationType(styleForRegExp),
+            new Array<vscode.Range>(_range)
+          );
+          return;
+        }
+
         let tags = JSON.parse(req.query.tags as string);
         let lineCandidate: vscode.TextLine | null = null;
         let highestScore: number = 0;
