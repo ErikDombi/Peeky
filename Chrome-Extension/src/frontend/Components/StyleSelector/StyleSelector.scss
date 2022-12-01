@@ -1,0 +1,90 @@
+@use '../Colors' as Colors;
+@use '../../../../node_modules/highlight.js/styles/atom-one-dark.css';
+
+.code-block-container {
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    margin: 0;
+    padding: 0;
+    z-index: 9999999;
+    line-height: normal;
+    
+    * {
+        font-family: arial,sans-serif;
+    }
+
+    h1 {
+        font-weight: bold;
+    }
+
+    .code-block-modal {
+        background: white;
+        display: flex;
+        flex-direction: column;
+        border-radius: 12px;
+        overflow: hidden;
+        position: relative;
+        transform: translate(-50%, -50%);
+        margin-top: 50vh;
+        margin-left: 50vw;
+        height: min-content;
+        max-height: 90vh;
+        min-width: 50vw;
+        max-width: 80vw;
+
+        .selector-header {
+            background: Colors.$primary-color;
+            margin: 0;
+            color: white;
+            padding: 10px;
+            position: relative;
+
+            h1 {
+                padding: 7px;
+                font-size: 28.8px;
+            }
+
+            .selector-close {
+                position: absolute;
+                top: 10px;
+                background: rgba(0,0,0,0.25);
+                padding: 8px 25px;
+                border-radius: 5px;
+                font-weight: bold;
+                font-size: 19.2px;
+                right: 20px;
+                cursor: default;
+                border: 2px solid rgba(0, 0, 0, 0.2);
+                letter-spacing: 1px;
+                color: white;
+            }
+        }
+
+        .rules {
+            padding: 22px 20px;
+            overflow-y: auto;
+
+            & > div {
+                height: min-content;
+            }
+
+            .code-block:not(.code-block:last-of-type) {
+                margin-bottom: 20px;
+            }
+        }
+    }
+
+    .code-block-container-bg {
+        position: fixed;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        margin: 0;
+        padding: 0;
+        background: rgba(0, 0, 0, 0.6);
+    }
+}

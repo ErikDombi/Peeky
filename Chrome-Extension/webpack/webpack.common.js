@@ -7,8 +7,8 @@ module.exports = {
     entry: {
       popup: path.join(srcDir, 'popup.tsx'),
       options: path.join(srcDir, 'options.tsx'),
-      background: path.join(srcDir, 'background.ts'),
-      content_script: path.join(srcDir, 'content_script.tsx'),
+      background: path.join(srcDir, 'backend', 'background.ts'),
+      content_script: path.join(srcDir, 'frontend', 'content_script.tsx'),
     },
     output: {
         path: path.join(__dirname, "../dist/js"),
@@ -29,6 +29,15 @@ module.exports = {
                 use: "ts-loader",
                 exclude: /node_modules/,
             },
+            {
+                test: /\.s[ac]ss$/i,
+                use: [
+                    "style-loader",
+                    "css-loader",
+                    "sass-loader"
+                ],
+                exclude: /node_modules/
+            }
         ],
     },
     resolve: {
